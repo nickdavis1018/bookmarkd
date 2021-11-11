@@ -31,3 +31,5 @@ app.use(express.json()); // parse json bodies
 app.get("/", (req, res) => {
     res.send("hello world");
   });
+
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
