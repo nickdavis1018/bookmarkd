@@ -50,7 +50,7 @@ Routes
 *******************/
 
 app.get("/", (req, res) => {
-  res.redirect("hello world");
+  res.send("hello world");
 });
 
 //Index Route
@@ -90,7 +90,7 @@ app.post("/bookmarks", async (req,res) => {
 })
 
 //Show Route
-app.get("/bookmarks/:id", (req,res) => {
+app.get("/bookmarks/:id", async (req, res) => {
   try {
     res.json(await Bookmark.findById(req.params.id));
   } catch(error){
