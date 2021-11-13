@@ -39,6 +39,7 @@ const Bookmark = mongoose.model("Bookmark", BookmarkSchema);
 /******************
 Middleware 
 *******************/
+const app = express();
 
 app.use(cors()); // to prevent cors errors, open access to all origins
 app.use(morgan("dev")); // logging
@@ -47,8 +48,6 @@ app.use(express.json()); // parse json bodies
 /******************
 Routes
 *******************/
-
-const app = express();
 
 app.get("/", (req, res) => {
   res.redirect("hello world");
@@ -66,7 +65,7 @@ app.get("/bookmarks", async (req,res) => {
 //Delete Route
 app.delete("/bookmarks/:id", async (req,res) => {
   try {
-    res.json(await People.findByIdAndRemove(req.params.id));
+    res.json(await Bookmark.findByIdAndRemove(req.params.id));
   } catch(error) {
     res.status(400).json(error);
   }
@@ -84,7 +83,7 @@ app.put("/bookmarks/:id", async (req,res) => {
 //Create Route
 app.post("/bookmarks", async (req,res) => {
   try {
-    res.json(await People.create(req.body));
+    res.json(await Bookmark.create(req.body));
   } catch(error) {
     res.status(400).json(error);
   }
